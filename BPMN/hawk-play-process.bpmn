@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Web Modeler" exporterVersion="6c0f1c1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.3.0" camunda:diagramRelationId="f274853c-0638-4ab0-9f16-f4734b813172">
+  <bpmn:process id="HawkPlay" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0jg4cbm</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_1nqdqwa" signalRef="Signal_0j2vff9" />
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0jg4cbm" sourceRef="StartEvent_1" targetRef="Gateway_1bkar9f" />
+    <bpmn:intermediateCatchEvent id="Event_0ajiodf" name="Stick is thrown">
+      <bpmn:incoming>Flow_0zc5jxe</bpmn:incoming>
+      <bpmn:outgoing>Flow_06mktiv</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_17at1ji" signalRef="Signal_1a5qr89" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_06mktiv" sourceRef="Event_0ajiodf" targetRef="Event_044ipng" />
+    <bpmn:intermediateThrowEvent id="Event_044ipng" name="Return Stick">
+      <bpmn:incoming>Flow_06mktiv</bpmn:incoming>
+      <bpmn:outgoing>Flow_04pntvl</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_1ss7mlz" signalRef="Signal_1ghnpu0" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_0zc5jxe" sourceRef="Gateway_1bkar9f" targetRef="Event_0ajiodf" />
+    <bpmn:eventBasedGateway id="Gateway_1bkar9f">
+      <bpmn:incoming>Flow_0jg4cbm</bpmn:incoming>
+      <bpmn:incoming>Flow_1698fep</bpmn:incoming>
+      <bpmn:incoming>Flow_04pntvl</bpmn:incoming>
+      <bpmn:outgoing>Flow_0zc5jxe</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0l6f2yb</bpmn:outgoing>
+    </bpmn:eventBasedGateway>
+    <bpmn:intermediateCatchEvent id="Event_0hi9hwg" name="Niall is hiding">
+      <bpmn:incoming>Flow_0l6f2yb</bpmn:incoming>
+      <bpmn:outgoing>Flow_1jfg46u</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_02dr2yv" signalRef="Signal_3qooukf" />
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0l6f2yb" sourceRef="Gateway_1bkar9f" targetRef="Event_0hi9hwg" />
+    <bpmn:sequenceFlow id="Flow_1jfg46u" sourceRef="Event_0hi9hwg" targetRef="Event_13qncyp" />
+    <bpmn:intermediateCatchEvent id="Event_13qncyp">
+      <bpmn:incoming>Flow_1jfg46u</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ebflul</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_15yflzo">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1ebflul" sourceRef="Event_13qncyp" targetRef="Event_0sy6wpw" />
+    <bpmn:intermediateThrowEvent id="Event_0sy6wpw" name="Find Niall">
+      <bpmn:incoming>Flow_1ebflul</bpmn:incoming>
+      <bpmn:outgoing>Flow_1698fep</bpmn:outgoing>
+      <bpmn:signalEventDefinition id="SignalEventDefinition_1ww7zn4" signalRef="Signal_2ee6926" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_1698fep" sourceRef="Event_0sy6wpw" targetRef="Gateway_1bkar9f" />
+    <bpmn:sequenceFlow id="Flow_04pntvl" sourceRef="Event_044ipng" targetRef="Gateway_1bkar9f" />
+    <bpmn:subProcess id="Activity_1cf91td" triggeredByEvent="true">
+      <bpmn:endEvent id="Event_0n6p12e" name="Stop playtime">
+        <bpmn:incoming>Flow_0pvyh1c</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="Flow_0pvyh1c" sourceRef="Event_0876e1y" targetRef="Event_0n6p12e" />
+      <bpmn:startEvent id="Event_0876e1y" name="Playtime is over">
+        <bpmn:outgoing>Flow_0pvyh1c</bpmn:outgoing>
+        <bpmn:signalEventDefinition id="SignalEventDefinition_1hx8zx4" signalRef="Signal_1jrm0cl" />
+      </bpmn:startEvent>
+    </bpmn:subProcess>
+  </bpmn:process>
+  <bpmn:signal id="Signal_0j2vff9" name="ReleaseHawk" />
+  <bpmn:signal id="Signal_1a5qr89" name="ThrowStick" />
+  <bpmn:signal id="Signal_1ghnpu0" name="WaitForHawk" />
+  <bpmn:signal id="Signal_3qooukf" name="StartHiding" />
+  <bpmn:signal id="Signal_2ee6926" name="FoundByHawk" />
+  <bpmn:signal id="Signal_1jrm0cl" name="EndPlaytime" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="HawkPlay">
+      <bpmndi:BPMNShape id="Event_0lhudoz_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="230" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vpgplx_di" bpmnElement="Event_0ajiodf">
+        <dc:Bounds x="302" y="230" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="284" y="273" width="73" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0i8dfcz_di" bpmnElement="Event_044ipng">
+        <dc:Bounds x="402" y="230" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="390" y="206" width="60" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0tdybpy_di" bpmnElement="Gateway_1bkar9f">
+        <dc:Bounds x="215" y="223" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0hi9hwg_di" bpmnElement="Event_0hi9hwg">
+        <dc:Bounds x="302" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="289" y="175" width="62" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_02iwoj2_di" bpmnElement="Event_13qncyp">
+        <dc:Bounds x="382" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_056jlzo_di" bpmnElement="Event_0sy6wpw">
+        <dc:Bounds x="462" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="459" y="175" width="43" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ivaxnb_di" bpmnElement="Activity_1cf91td" isExpanded="true">
+        <dc:Bounds x="170" y="430" width="248" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0n6p12e_di" bpmnElement="Event_0n6p12e">
+        <dc:Bounds x="302" y="492" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="288" y="535" width="65" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1xdm01l_di" bpmnElement="Event_0876e1y">
+        <dc:Bounds x="210" y="492" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="190" y="535" width="76" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pvyh1c_di" bpmnElement="Flow_0pvyh1c">
+        <di:waypoint x="246" y="510" />
+        <di:waypoint x="302" y="510" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jg4cbm_di" bpmnElement="Flow_0jg4cbm">
+        <di:waypoint x="186" y="248" />
+        <di:waypoint x="215" y="248" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06mktiv_di" bpmnElement="Flow_06mktiv">
+        <di:waypoint x="338" y="248" />
+        <di:waypoint x="402" y="248" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0zc5jxe_di" bpmnElement="Flow_0zc5jxe">
+        <di:waypoint x="265" y="248" />
+        <di:waypoint x="302" y="248" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0l6f2yb_di" bpmnElement="Flow_0l6f2yb">
+        <di:waypoint x="240" y="223" />
+        <di:waypoint x="240" y="150" />
+        <di:waypoint x="302" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1jfg46u_di" bpmnElement="Flow_1jfg46u">
+        <di:waypoint x="338" y="150" />
+        <di:waypoint x="382" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ebflul_di" bpmnElement="Flow_1ebflul">
+        <di:waypoint x="418" y="150" />
+        <di:waypoint x="462" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1698fep_di" bpmnElement="Flow_1698fep">
+        <di:waypoint x="498" y="150" />
+        <di:waypoint x="550" y="150" />
+        <di:waypoint x="550" y="80" />
+        <di:waypoint x="230" y="80" />
+        <di:waypoint x="230" y="233" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_04pntvl_di" bpmnElement="Flow_04pntvl">
+        <di:waypoint x="438" y="248" />
+        <di:waypoint x="500" y="248" />
+        <di:waypoint x="500" y="350" />
+        <di:waypoint x="230" y="350" />
+        <di:waypoint x="230" y="263" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

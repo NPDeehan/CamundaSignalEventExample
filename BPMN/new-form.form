@@ -1,0 +1,43 @@
+{
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.3.0",
+  "exporter": {
+    "name": "Camunda Web Modeler",
+    "version": "2b12eab"
+  },
+  "schemaVersion": 11,
+  "components": [
+    {
+      "text": "# Playing with a Hawk",
+      "label": "Text view",
+      "type": "text",
+      "layout": {
+        "row": "Row_0hd7hla",
+        "columns": null
+      },
+      "id": "Field_112gbtl"
+    },
+    {
+      "values": [
+        {
+          "label": "Play Hide and Seek",
+          "value": "hide"
+        },
+        {
+          "label": "Play Fetch",
+          "value": "fetch"
+        }
+      ],
+      "label": "Select an Activity",
+      "type": "select",
+      "layout": {
+        "row": "Row_0pfxgv2",
+        "columns": null
+      },
+      "id": "Field_11em4aa",
+      "key": "action"
+    }
+  ],
+  "type": "default",
+  "id": "Form_0vv8kys"
+}
